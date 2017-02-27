@@ -10,6 +10,7 @@ import UIKit
 
 class TweetCell: UITableViewCell {
 
+    @IBOutlet weak var timeStamp: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var screenName: UILabel!
     @IBOutlet weak var TextLabel: UILabel!

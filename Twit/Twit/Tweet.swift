@@ -11,7 +11,7 @@ import UIKit
 class Tweet: NSObject {
 
     var text: String?
-    var timetamp: NSDate?
+    var timetamp: Date?
     var retweetCount: Int = 0
     var favoritesCount: Int = 0
     var profilePictureUrl: String?
@@ -29,11 +29,12 @@ class Tweet: NSObject {
         profilePictureUrl = user.value(forKey: "profile_image_url_https") as! String?
         name = user.value(forKey: "name") as! String?
         screenName = user.value(forKey: "screen_name") as! String?
-        let timestampSting = dictionary["created_at"] as? NSString
+        let timestampSting = dictionary["created_at"] as? String
+       
         if let timestampSting = timestampSting{
             let formatter =  DateFormatter()
             formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
-            timetamp = formatter.date(from: timestampSting as String) as NSDate?
+            timetamp = formatter.date(from: timestampSting as String) as Date?
         }
    
         

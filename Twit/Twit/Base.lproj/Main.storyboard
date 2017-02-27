@@ -71,7 +71,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DF7-yA-A6a" id="eBt-7y-V9F">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="111"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D5k-u2-ZOM">
@@ -99,17 +99,26 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="4h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sc-7w-ybr">
+                                                    <rect key="frame" x="343" y="8" width="24" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="sb3-uf-fna" secondAttribute="trailing" constant="88" id="0dM-zx-8AF"/>
                                                 <constraint firstAttribute="topMargin" secondItem="17I-c4-z2C" secondAttribute="top" id="4Rh-YF-dra"/>
+                                                <constraint firstItem="7sc-7w-ybr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="L7t-wA-Boz" secondAttribute="trailing" constant="127" id="ABP-kg-Jne"/>
                                                 <constraint firstItem="L7t-wA-Boz" firstAttribute="leading" secondItem="17I-c4-z2C" secondAttribute="trailing" constant="19" id="HH7-NN-S0L"/>
                                                 <constraint firstItem="sb3-uf-fna" firstAttribute="leading" secondItem="D5k-u2-ZOM" secondAttribute="trailing" constant="29" id="QZk-9Q-lmX"/>
-                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="L7t-wA-Boz" secondAttribute="trailing" constant="151" id="W4S-B1-VBS"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="7sc-7w-ybr" secondAttribute="bottom" constant="76" id="Rxq-2h-5OU"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="D5k-u2-ZOM" secondAttribute="bottom" constant="25" id="WlP-eJ-viu"/>
                                                 <constraint firstItem="D5k-u2-ZOM" firstAttribute="top" secondItem="17I-c4-z2C" secondAttribute="bottom" constant="1" id="a0g-da-4Ef"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="sb3-uf-fna" secondAttribute="bottom" constant="25" id="gU8-6m-eSC"/>
                                                 <constraint firstItem="sb3-uf-fna" firstAttribute="top" relation="greaterThanOrEqual" secondItem="L7t-wA-Boz" secondAttribute="bottom" constant="13" id="jb0-YB-bZg"/>
+                                                <constraint firstAttribute="topMargin" secondItem="7sc-7w-ybr" secondAttribute="top" id="wE7-2d-fRU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="7sc-7w-ybr" secondAttribute="trailing" id="wNu-Ee-N3v"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="17I-c4-z2C" secondAttribute="leading" id="wYf-U8-iha"/>
                                                 <constraint firstItem="L7t-wA-Boz" firstAttribute="bottom" secondItem="17I-c4-z2C" secondAttribute="bottom" id="yY4-dn-bZs"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="D5k-u2-ZOM" secondAttribute="leading" id="zQe-hp-orv"/>
@@ -119,6 +128,7 @@
                                             <outlet property="ProfielPicture" destination="D5k-u2-ZOM" id="T4a-v5-Pfv"/>
                                             <outlet property="TextLabel" destination="sb3-uf-fna" id="ZW1-ah-Bw0"/>
                                             <outlet property="screenName" destination="L7t-wA-Boz" id="mD1-xt-8HK"/>
+                                            <outlet property="timeStamp" destination="7sc-7w-ybr" id="aSg-cB-9AP"/>
                                             <outlet property="userName" destination="17I-c4-z2C" id="iFy-Ko-XhT"/>
                                         </connections>
                                     </tableViewCell>
@@ -129,7 +139,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="2lf-4d-LL2">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="BLr-lg-N5Z">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5Op-9k-iue">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5Op-9k-iue">
                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Logout"/>
