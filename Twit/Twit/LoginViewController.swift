@@ -29,37 +29,16 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginButton(_ sender: Any) {
-        let twitterClient = BDBOAuth1SessionManager.init(baseURL: NSURL(string: "https://api.twitter.com") as URL!, consumerKey: "3srGhuQMZH7TI7Gctrk8O6nbt", consumerSecret: "GBqydTgT6CIBWgTlZVKSmbLOZ3uaIK5V3ABdJFynsqzljLZZRT")
         
-        //Logout first before request
-        twitterClient?.deauthorize()
+    //Call self defined function in API folder
+    TwitterClient.sharedInstance?.login(success: {
+            print("Logged in")
         
-        //Get the token
-        //twitterdemo is random string need to tell system to handle it
-        //Handle it by go to Info > URL
-        //callbackURL redirect it to twitterdemo://oauth
-        twitterClient?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: NSURL(string: "twitterdemo://oauth") as URL!, scope: nil, success: { (requestToken) in
-            
-            print("I got a token")
-            
-/*********************************************************************************************
-            Open the url in iphone safari
-            Add token into the url
-            This is use for user to authroize in the safari
-*********************************************************************************************/
-            let url = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken!.token!)")!
-            UIApplication.shared.open(url as URL, options: [:], completionHandler: { (success) in
-                print("It can open")
-            })
-        }, failure: { (error: Error?) in
-            print(error?.localizedDescription as Any)
+        //When login success perform to navigaion viewcontorler. loginSegue is the identifier for the segue between login and navigation viewcontroller
+            self.performSegue(withIdentifier: "loginSegue", sender: nil)
+        }, failure: { (error: NSError) in
+            print("Error \(error.localizedDescription)")
         })
-        
-/*********************************************************************************************
-         See code in AppDelegate
-         That is once user authorized get the access code
-         
-*********************************************************************************************/
         
     }
 
