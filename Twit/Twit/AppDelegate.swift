@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+       
+        UINavigationBar.appearance().barTintColor = UIColor(hue: 0.5, saturation: 1, brightness: 0.9, alpha: 1.0)
         
         if User.currentUser != nil {
             

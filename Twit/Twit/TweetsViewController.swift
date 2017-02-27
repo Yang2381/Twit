@@ -12,6 +12,7 @@ import AFNetworking
 class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var tweets: [Tweet]!
+    var retweets: [Tweet]!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,6 +20,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 120
         
         //Get Timeline tweet and store it in tweets[]
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
@@ -28,6 +31,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         }, failure: { (error: NSError) in
             print(error.localizedDescription)
         })
+        
         
         // Do any additional setup after loading the view.
     }

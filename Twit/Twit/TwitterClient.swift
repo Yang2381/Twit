@@ -74,6 +74,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     func handlOpenUrl(url: URL) {
         
+        //Fetch Token
         let requestToken = BDBOAuth1Credential(queryString: url.query)
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) in
            
@@ -121,8 +122,33 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
         
     }
-
     
+    //And this trunk
+    func favoriate(id: String,success: @escaping (Tweet) -> (), failure: @escaping (NSError) -> ()) {
+        post("1.1/favorites/create.json", parameters: ["id": id], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            let favoritedictionary = response as? NSDictionary
+            let tweet = Tweet(dictionary: favoritedictionary!)
+            
+            //No idea what this is doing
+            success(tweet)
+            
+        }) { (task: URLSessionDataTask?, error: Error) in
+            failure(error as NSError)
+        }
+    }
+    
+    func retweet(id: String, success: @escaping (Tweet) -> (), faliure: @escaping (Error) -> ()) {
+        post("1.1/statuses/retweet/\(id).json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            let retweetDictionary = response as? NSDictionary
+            let tweet = Tweet(dictionary: retweetDictionary!)
+            
+            //No idea what this is doing
+            success(tweet)
+
+        }) { (task: URLSessionDataTask?, error: Error) in
+            faliure(error)
+        }
+    }
     
     
 }
