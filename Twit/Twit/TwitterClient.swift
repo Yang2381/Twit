@@ -11,6 +11,7 @@ import BDBOAuth1Manager
 
 class TwitterClient: BDBOAuth1SessionManager {
     
+   
     //Static means can't be overwritten
    static let sharedInstance = TwitterClient(baseURL: NSURL(string: "https://api.twitter.com") as URL!, consumerKey: "3srGhuQMZH7TI7Gctrk8O6nbt", consumerSecret: "GBqydTgT6CIBWgTlZVKSmbLOZ3uaIK5V3ABdJFynsqzljLZZRT")
     
@@ -64,15 +65,26 @@ class TwitterClient: BDBOAuth1SessionManager {
          *********************************************************************************************/
     }
     
+    func logout()  {
+        User.currentUser = nil
+        deauthorize()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: User.userDidLogoutNotification), object: nil)
+    }
+    
     func handlOpenUrl(url: NSURL) {
         
         let requestToken = BDBOAuth1Credential(queryString: url.query)
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken: BDBOAuth1Credential?) in
            
-           self.loginSucess?()
+            self.currentAccount(success: { (user: User) in
+               //Call setter and save currentUser
+                User.currentUser = user
+                self.loginSucess?()
+            }, failure: { (error: NSError) in
+                self.loginfailure?(error)
+            })
             
         }, failure: { (error: Error?) in
-            print(error?.localizedDescription )
             self.loginfailure?(error as! NSError)
         })
 
@@ -92,20 +104,17 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
-    func currentAccount(){
+    func currentAccount(success: @escaping (User) -> (), failure: @escaping (NSError) -> ()){
         get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any) in
-            print("account: \(response)")
             
             //Cast stored json response in response into dictionary in user
             let userDictionary = response as? NSDictionary
-            
             let user = User(dictionary: userDictionary!)
             
-            print(user.name)
-            print(user.profielURL)
-            print(user.tagline)
+            success(user)
+           
         }, failure: { (task: URLSessionDataTask?, error: Error) in
-            print(error.localizedDescription)
+            failure(error as NSError)
         })
         
     }

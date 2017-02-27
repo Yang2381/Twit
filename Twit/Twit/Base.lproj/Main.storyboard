@@ -71,7 +71,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="2lf-4d-LL2"/>
+                    <navigationItem key="navigationItem" id="2lf-4d-LL2">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="BLr-lg-N5Z">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5Op-9k-iue">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                            </button>
+                            <connections>
+                                <action selector="onLogoutButton:" destination="bK7-Lb-jEe" id="cnu-E4-0Rm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="KJ1-H5-lSF" id="Gxm-Zz-N0C"/>
                     </connections>
@@ -83,7 +94,7 @@
         <!--Navigation Controller-->
         <scene sceneID="bET-wk-R7K">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pbQ-ON-0z2" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TweetsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="pbQ-ON-0z2" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AD8-1p-e5W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -96,7 +107,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Kn-bc-rMj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1088.8" y="123.68815592203899"/>
+            <point key="canvasLocation" x="1370" y="130"/>
         </scene>
     </scenes>
 </document>
