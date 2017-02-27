@@ -19,7 +19,7 @@ class Tweet: NSObject {
         text = dictionary["text"] as! NSString?
         
         //?? Means if it does not exist use 0 instead
-        retweetCount = (dictionary["retweet_count"] as! Int) ?? 0
+        retweetCount = (dictionary["retweet_count"] as! Int) 
         favoritesCount = (dictionary["favourites_count"] as? Int) ?? 0
         
         

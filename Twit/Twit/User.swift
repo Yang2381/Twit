@@ -63,13 +63,11 @@ class User: NSObject {
             if let user = user{
                 //If user does exist store current user in json format in data
                 let data = try! JSONSerialization.data(withJSONObject: user.dictionary!, options: [])
-                defaults.set(user, forKey: "currentUserData")
+                defaults.set(data, forKey: "currentUserData")
             }else{
                 //Store current user as nil
                 defaults.set(nil, forKey: "currentUserData")
-                }
-        
-            defaults.set(user, forKey: "currentUser")
+            }
         
             defaults.synchronize()
         }
