@@ -53,7 +53,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         let imageURL = URL(string: tweet.profilePictureUrl!)
         cell.ProfielPicture.setImageWith(imageURL!)
         cell.userName.text = tweet.name
-        cell.screenName.text = "@\(tweet.screenName)"
+        cell.screenName.text = "@\(tweet.screenName!)"
         
         return cell
     }

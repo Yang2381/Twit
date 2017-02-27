@@ -60,8 +60,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //This is use to get access token once user says authorize
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-
-       TwitterClient.sharedInstance?.handlOpenUrl(url: url as URL)
+    
+       TwitterClient.sharedInstance?.handlOpenUrl(url: url)
                 
         return true
     }
