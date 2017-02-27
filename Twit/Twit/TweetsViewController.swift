@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AFNetworking
 
 class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -21,10 +22,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         //Get Timeline tweet and store it in tweets[]
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
-           self.tweets = tweets
-            for tweet in tweets{
-                print(tweet.text)
-            }
+            self.tweets = tweets
             self.tableView.reloadData()
             
         }, failure: { (error: NSError) in
@@ -50,20 +48,34 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as! TweetCell
         
+        let tweet  = tweets[indexPath.row]
+        cell.TextLabel.text = tweet.text
+        let imageURL = URL(string: tweet.profilePictureUrl!)
+        cell.ProfielPicture.setImageWith(imageURL!)
+        cell.userName.text = tweet.name
+        cell.screenName.text = "@\(tweet.screenName)"
+        
         return cell
     }
     
     @IBAction func onLogoutButton(_ sender: Any) {
-        TwitterClient.sharedInstance?.logout()
+         TwitterClient.sharedInstance?.logout()
     }
+   
     /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)
+        let tweet = tweets[indexPath!.row]
+        
     }
-    */
-
+    
+  */
 }

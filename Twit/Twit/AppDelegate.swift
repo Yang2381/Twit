@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         if User.currentUser != nil {
-            print("There is a current user")
+            
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //This is use to get access token once user says authorize
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
 
-       TwitterClient.sharedInstance?.handlOpenUrl(url: url as NSURL)
+       TwitterClient.sharedInstance?.handlOpenUrl(url: url as URL)
                 
         return true
     }

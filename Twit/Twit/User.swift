@@ -14,7 +14,7 @@ class User: NSObject {
     
     var name: NSString?
     var screenname: NSString?
-    var profielURL: NSURL?
+    var profielURL: URL?
     var tagline: NSString?
 
     var dictionary: NSDictionary?
@@ -28,7 +28,7 @@ class User: NSObject {
         
         let profileURLString = dictionary["profile_image_url_https"] as? String
         if let profileURLString = profileURLString{
-            profielURL = NSURL(string: profileURLString)
+            profielURL = URL(string: profileURLString)
         }
         
         tagline = dictionary["description"] as! NSString?
@@ -43,12 +43,11 @@ class User: NSObject {
                 let defaults = UserDefaults.standard
                 
                 //Check if there is data in currentUser
-                let userData = defaults.object(forKey: "currentUser") as? NSData
+                let userData = defaults.object(forKey: "currentUserData") as? NSData
                 
                 //If there is!
-                if let userData = userData{
-                    let dictionary = try!
-                        JSONSerialization.jsonObject(with: userData as Data, options: []) as! NSDictionary
+                if let userData = userData {
+                   let dictionary = try! JSONSerialization.jsonObject(with: userData as Data, options: []) as! NSDictionary
                     //Store it in the _currentUser
                     _currentUser = User(dictionary: dictionary)
                 }
