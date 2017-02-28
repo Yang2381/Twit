@@ -92,7 +92,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="4h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sc-7w-ybr">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="4h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sc-7w-ybr">
                                                     <rect key="frame" x="343" y="8" width="24" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -104,29 +104,45 @@
                                                     <color key="textColor" red="0.69964629975124382" green="0.69964629975124382" blue="0.69964629975124382" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pTw-35-Enw">
+                                                    <rect key="frame" x="106" y="79" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="like">
+                                                        <color key="titleColor" red="0.99598234891891479" green="0.99225562810897827" blue="0.99200648069381714" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WUx-lS-KiD">
+                                                    <rect key="frame" x="185" y="79" width="24" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="grayretweet"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="L7t-wA-Boz" firstAttribute="bottom" secondItem="17I-c4-z2C" secondAttribute="bottom" id="1My-Gt-JfM"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="sb3-uf-fna" secondAttribute="bottom" constant="20" id="3a2-cN-0QD"/>
                                                 <constraint firstItem="L7t-wA-Boz" firstAttribute="top" secondItem="17I-c4-z2C" secondAttribute="top" id="AKL-gv-eIm"/>
                                                 <constraint firstItem="L7t-wA-Boz" firstAttribute="centerY" secondItem="17I-c4-z2C" secondAttribute="centerY" id="BMN-AG-hpe"/>
                                                 <constraint firstAttribute="topMargin" secondItem="7sc-7w-ybr" secondAttribute="top" id="G3l-6U-n3X"/>
                                                 <constraint firstItem="L7t-wA-Boz" firstAttribute="leading" secondItem="17I-c4-z2C" secondAttribute="trailing" constant="20" id="GX7-Ey-AzZ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="7sc-7w-ybr" secondAttribute="trailing" id="Kl6-T2-r3n"/>
                                                 <constraint firstAttribute="topMargin" secondItem="17I-c4-z2C" secondAttribute="top" id="OLK-ig-a1v"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="7sc-7w-ybr" secondAttribute="trailing" id="Oh3-kW-paN"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="D5k-u2-ZOM" secondAttribute="leading" id="SOF-d0-Fbw"/>
-                                                <constraint firstItem="7sc-7w-ybr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="L7t-wA-Boz" secondAttribute="trailing" constant="65" id="ZWy-65-0Wj"/>
+                                                <constraint firstItem="7sc-7w-ybr" firstAttribute="leading" relation="lessThanOrEqual" secondItem="L7t-wA-Boz" secondAttribute="trailing" constant="65" id="ZWy-65-0Wj"/>
                                                 <constraint firstItem="sb3-uf-fna" firstAttribute="leading" secondItem="D5k-u2-ZOM" secondAttribute="trailing" constant="8" id="aTU-R4-LrT"/>
                                                 <constraint firstAttribute="topMargin" secondItem="D5k-u2-ZOM" secondAttribute="top" constant="-5" id="chg-8e-beV"/>
                                                 <constraint firstItem="sb3-uf-fna" firstAttribute="top" secondItem="17I-c4-z2C" secondAttribute="bottom" constant="18" id="j8X-jD-g4y"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="7sc-7w-ybr" secondAttribute="bottom" constant="76" id="kcT-yQ-QHv"/>
                                                 <constraint firstItem="17I-c4-z2C" firstAttribute="leading" secondItem="D5k-u2-ZOM" secondAttribute="trailing" constant="8" id="m9m-l7-nZg"/>
                                                 <constraint firstItem="sb3-uf-fna" firstAttribute="top" secondItem="L7t-wA-Boz" secondAttribute="bottom" constant="18" id="oCf-KJ-TWo"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="sb3-uf-fna" secondAttribute="trailing" constant="31" id="v1s-Lq-uuf"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="D5k-u2-ZOM" secondAttribute="bottom" constant="12" id="yPY-bX-6dl"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="ProfielPicture" destination="D5k-u2-ZOM" id="T4a-v5-Pfv"/>
                                             <outlet property="TextLabel" destination="sb3-uf-fna" id="ZW1-ah-Bw0"/>
+                                            <outlet property="likeButton" destination="pTw-35-Enw" id="hiz-ST-qUW"/>
+                                            <outlet property="retweetButton" destination="WUx-lS-KiD" id="mKs-1i-4ff"/>
                                             <outlet property="screenName" destination="L7t-wA-Boz" id="mD1-xt-8HK"/>
                                             <outlet property="timeStamp" destination="7sc-7w-ybr" id="aSg-cB-9AP"/>
                                             <outlet property="userName" destination="17I-c4-z2C" id="iFy-Ko-XhT"/>
@@ -182,4 +198,8 @@
             <point key="canvasLocation" x="1370" y="130"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="grayretweet" width="60" height="60"/>
+        <image name="like" width="30" height="30"/>
+    </resources>
 </document>

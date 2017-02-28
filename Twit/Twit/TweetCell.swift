@@ -10,6 +10,8 @@ import UIKit
 
 class TweetCell: UITableViewCell {
 
+    @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var timeStamp: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var screenName: UILabel!
@@ -21,6 +23,7 @@ class TweetCell: UITableViewCell {
         // Initialization code
         ProfielPicture.layer.cornerRadius = 5
         ProfielPicture.clipsToBounds = true
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

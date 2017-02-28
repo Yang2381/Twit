@@ -58,10 +58,23 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         cell.ProfielPicture.setImageWith(imageURL!)
         cell.userName.text = tweet.name
         cell.screenName.text = "@\(tweet.screenName!)"
+        cell.timeStamp.text = "\(tweet.timetamp!)"
         
-               
+        if(tweet.favioriate == true){
+            cell.likeButton.setImage(UIImage(named: "like"), for: UIControlState.normal)
+        }else{
+            cell.likeButton.setImage(UIImage(named: "no-like"), for: UIControlState.normal)
+        }
+        
+        if(tweet.retweeted == true){
+            cell.retweetButton.setImage(UIImage(named: "greenretweet"), for: UIControlState.normal)
+        }else{
+            cell.retweetButton.setImage(UIImage(named: "grayretweet"), for: UIControlState.normal)
+        }
+
         return cell
     }
+  
     
     @IBAction func onLogoutButton(_ sender: Any) {
          TwitterClient.sharedInstance?.logout()
@@ -80,6 +93,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         let indexPath = tableView.indexPath(for: cell)
         let tweet = tweets[indexPath!.row]
         
+        let
+ 
     }
     
   */
