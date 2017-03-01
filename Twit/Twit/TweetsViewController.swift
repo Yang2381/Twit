@@ -9,10 +9,10 @@
 import UIKit
 import AFNetworking
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
     var tweets: [Tweet]!
-    var retweets: [Tweet]!
+    
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -26,16 +26,30 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         //Get Timeline tweet and store it in tweets[]
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
             self.tweets = tweets
+            
             self.tableView.reloadData()
             
-        }, failure: { (error: NSError) in
+        }, failure: { (error: Error) in
             print(error.localizedDescription)
         })
         
         
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
+            self.tweets = tweets
+            
+            self.tableView.reloadData()
+            
+        }, failure: { (error: Error) in
+            print(error.localizedDescription)
+        })
+        
 
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -52,26 +66,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as! TweetCell
         
-        let tweet  = tweets[indexPath.row]
-        cell.TextLabel.text = tweet.text
-        let imageURL = URL(string: tweet.profilePictureUrl!)
-        cell.ProfielPicture.setImageWith(imageURL!)
-        cell.userName.text = tweet.name
-        cell.screenName.text = "@\(tweet.screenName!)"
-        cell.timeStamp.text = "\(tweet.timetamp!)"
-        
-        if(tweet.favioriate == true){
-            cell.likeButton.setImage(UIImage(named: "like"), for: UIControlState.normal)
-        }else{
-            cell.likeButton.setImage(UIImage(named: "no-like"), for: UIControlState.normal)
-        }
-        
-        if(tweet.retweeted == true){
-            cell.retweetButton.setImage(UIImage(named: "greenretweet"), for: UIControlState.normal)
-        }else{
-            cell.retweetButton.setImage(UIImage(named: "grayretweet"), for: UIControlState.normal)
-        }
-
+        cell.tweet  = tweets[indexPath.row]
         return cell
     }
   

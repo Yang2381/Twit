@@ -129,7 +129,6 @@ class TwitterClient: BDBOAuth1SessionManager {
             let favoritedictionary = response as? NSDictionary
             let tweet = Tweet(dictionary: favoritedictionary!)
             
-            //No idea what this is doing
             success(tweet)
             
         }) { (task: URLSessionDataTask?, error: Error) in
@@ -142,7 +141,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             let retweetDictionary = response as? NSDictionary
             let tweet = Tweet(dictionary: retweetDictionary!)
             
-            //No idea what this is doing
+            
             success(tweet)
 
         }) { (task: URLSessionDataTask?, error: Error) in

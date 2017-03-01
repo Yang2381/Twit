@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
     //Call self defined function in API folder
     TwitterClient.sharedInstance?.login(success: {
             print("Logged in")
-        
+       
         //When login success perform to navigaion viewcontorler. loginSegue is the identifier for the segue between login and navigation viewcontroller
             self.performSegue(withIdentifier: "loginSegue", sender: nil)
         }, failure: { (error: NSError) in
