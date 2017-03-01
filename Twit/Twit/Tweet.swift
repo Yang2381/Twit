@@ -17,16 +17,16 @@ class Tweet: NSObject {
     var profilePictureUrl: String?
     var name: String?
     var screenName: String?
-    var id: String?
+    var id: Int?
     var favioriate: Bool?
     var retweeted: Bool?
     
     init(dictionary: NSDictionary) {
         
-        id = dictionary["id_str"] as! String?
+        id = dictionary["id"] as! Int?
         text = dictionary["text"] as! String?
-        retweetCount = (dictionary["retweet_count"] as! Int) 
-        favoritesCount = (dictionary["favourites_count"] as? Int) ?? 0
+        retweetCount = (dictionary["retweet_count"] as? Int) ?? 0
+        favoritesCount = (dictionary["favorite_count"] as? Int) ?? 0
         
         let user = dictionary.value(forKey: "user") as! NSDictionary
         profilePictureUrl = user.value(forKey: "profile_image_url_https") as! String?

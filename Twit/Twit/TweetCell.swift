@@ -12,45 +12,46 @@ class TweetCell: UITableViewCell {
 
     @IBOutlet weak var retweetCount: UILabel!
     @IBOutlet weak var likeCount: UILabel!
-    @IBOutlet weak var retweetButton: UIButton!
-    @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var timeStamp: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var screenName: UILabel!
     @IBOutlet weak var TextLabel: UILabel!
     @IBOutlet weak var ProfielPicture: UIImageView!
     
+    @IBOutlet weak var retweetImage: UIImageView!
+    @IBOutlet weak var likeImage: UIImageView!
     
     var tweet: Tweet!{
-        willSet{
+        didSet{
             TextLabel.text = tweet.text!
             let imageURL = URL(string: tweet.profilePictureUrl!)
             ProfielPicture.setImageWith(imageURL!)
             userName.text = tweet.name
             screenName.text = "@\(tweet.screenName!)"
+            retweetCount.text = "\(tweet.retweetCount)"
+            likeCount.text = "\(tweet.favoritesCount)"
+                        
             
             let interval = Int(Date().timeIntervalSince(tweet.timetamp!))
             let timeInhours_minutes_seconds = convertSecondToDateAgo(seconds: interval)
             timeStamp.text = timeInhours_minutes_seconds
             
             if(tweet.favioriate == true ){
-                likeButton.setImage(UIImage(named: "like"), for: UIControlState.normal)
+                likeImage.image = UIImage(named: "like")
 
             }else{
-                likeButton.setImage(UIImage(named: "no-like"), for: UIControlState.normal)
+                likeImage.image = UIImage(named: "no-like")
             }
             
             if(tweet.retweeted == true){
-                retweetButton.setImage(UIImage(named: "greenretweet"), for: UIControlState.normal)
+                retweetImage.image = UIImage(named: "greentweet")
 
             }else{
-                retweetButton.setImage(UIImage(named: "grayretweet"), for: UIControlState.normal)
+                retweetImage.image = UIImage(named: "grayretweet")
             }
             
         }
-        didSet{
-            
-        }
+       
     }
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -59,9 +60,17 @@ class TweetCell: UITableViewCell {
         ProfielPicture.clipsToBounds = true
         
         //This is not working either
-        let TapRecognizerRetweet = UITapGestureRecognizer(target: self, action: #selector(TweetCell.TapRetweet(_:)))
-        
-    }
+        let TapRecognizerRetweet = UITapGestureRecognizer(target: self, action: #selector(self.TapRetweet(_sender:)))
+        let TapRecognizerLike = UITapGestureRecognizer(target: self, action: #selector(self.TapLike(_sender:)))
+        likeImage.isUserInteractionEnabled = true
+        retweetImage.isUserInteractionEnabled = true
+        TapRecognizerRetweet.cancelsTouchesInView = true
+        TapRecognizerLike.cancelsTouchesInView = true
+
+    
+        self.retweetImage.addGestureRecognizer(TapRecognizerRetweet)
+        self.likeImage.addGestureRecognizer(TapRecognizerLike)
+            }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -69,18 +78,34 @@ class TweetCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func TapRetweet(_sender: Any){
+    func TapRetweet(_sender: UITapGestureRecognizer){
         
         TwitterClient.sharedInstance?.retweet(id: tweet.id!, success: { (response: Tweet) in
-             self.retweetButton.setImage(UIImage(named: "greenretweet"), for: UIControlState.normal)
-             self.retweetCount.text = self.convertCount(count: response.retweetCount)
+            self.retweetImage.image = UIImage(named: "greentweet")
+            self.retweetCount.text = self.convertCount(count: response.retweetCount)
             self.tweet.retweetCount = response.retweetCount
             self.tweet.retweeted = true
+            sleep(UInt32(1))
         }, faliure: { (error: Error) in
             
         })
     }
     
+    
+    func TapLike(_sender: UITapGestureRecognizer){
+        
+        print("Tapped like")
+        TwitterClient.sharedInstance?.favoriate(id: tweet.id!, success: { (response: Tweet) in
+            self.likeImage.image = UIImage(named: "like")
+            self.likeCount.text = self.convertCount(count: response.favoritesCount)
+            self.tweet.favoritesCount = response.favoritesCount
+            self.tweet.favioriate = true
+            sleep(UInt32(1))
+        }, failure: { (error: Error) in
+            print(error.localizedDescription)
+            print("1")
+        })
+    }
     /***************************************************************
      This portion of work is in direct reference from Liang
      Github: liang162

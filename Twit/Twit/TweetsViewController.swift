@@ -31,6 +31,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             
         }, failure: { (error: Error) in
             print(error.localizedDescription)
+            print(3)
         })
         
         
@@ -45,6 +46,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             
         }, failure: { (error: Error) in
             print(error.localizedDescription)
+            print(2)
         })
         
 
@@ -67,6 +69,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as! TweetCell
         
         cell.tweet  = tweets[indexPath.row]
+        
         return cell
     }
   

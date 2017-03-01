@@ -105,6 +105,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             
         }, failure: { (task: URLSessionDataTask?, error: Error) in
             failure(error as NSError)
+            
         })
     }
     
@@ -119,12 +120,14 @@ class TwitterClient: BDBOAuth1SessionManager {
            
         }, failure: { (task: URLSessionDataTask?, error: Error) in
             failure(error as NSError)
+            
         })
         
     }
     
-    //And this trunk
-    func favoriate(id: String,success: @escaping (Tweet) -> (), failure: @escaping (NSError) -> ()) {
+    
+        
+    func favoriate(id: Int,success: @escaping (Tweet) -> (), failure: @escaping (NSError) -> ()) {
         post("1.1/favorites/create.json", parameters: ["id": id], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             let favoritedictionary = response as? NSDictionary
             let tweet = Tweet(dictionary: favoritedictionary!)
@@ -133,10 +136,11 @@ class TwitterClient: BDBOAuth1SessionManager {
             
         }) { (task: URLSessionDataTask?, error: Error) in
             failure(error as NSError)
+            print(6)
         }
     }
     
-    func retweet(id: String, success: @escaping (Tweet) -> (), faliure: @escaping (Error) -> ()) {
+    func retweet(id: Int, success: @escaping (Tweet) -> (), faliure: @escaping (Error) -> ()) {
         post("1.1/statuses/retweet/\(id).json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             let retweetDictionary = response as? NSDictionary
             let tweet = Tweet(dictionary: retweetDictionary!)
@@ -146,6 +150,7 @@ class TwitterClient: BDBOAuth1SessionManager {
 
         }) { (task: URLSessionDataTask?, error: Error) in
             faliure(error)
+            print(8)
         }
     }
     
