@@ -58,6 +58,7 @@ class TweetCell: UITableViewCell {
         ProfielPicture.layer.cornerRadius = 5
         ProfielPicture.clipsToBounds = true
         
+        //This is not working either
         let TapRecognizerRetweet = UITapGestureRecognizer(target: self, action: #selector(TweetCell.TapRetweet(_:)))
         
     }
