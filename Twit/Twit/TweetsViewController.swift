@@ -24,9 +24,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
         
-        let logo = UIImage(named: "AppIcon")
-        let imageView = UIImageView(image: logo)
-        self.navigationItem.titleView = imageView
+     
+        
         //Get Timeline tweet and store it in tweets[]
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
             self.tweets = tweets

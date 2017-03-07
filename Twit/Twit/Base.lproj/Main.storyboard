@@ -124,7 +124,7 @@
             </objects>
             <point key="canvasLocation" x="3668" y="-586.05697151424295"/>
         </scene>
-        <!--Tweets View Controller-->
+        <!--Home-->
         <scene sceneID="M7U-ak-Pn6">
             <objects>
                 <viewController id="bK7-Lb-jEe" customClass="TweetsViewController" customModule="Twit" customModuleProvider="target" sceneMemberID="viewController">
@@ -264,7 +264,7 @@
                             <constraint firstItem="KJ1-H5-lSF" firstAttribute="top" secondItem="TDG-3M-q4s" secondAttribute="top" constant="7" id="yKx-Ce-CQ7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="2lf-4d-LL2">
+                    <navigationItem key="navigationItem" title="Home" id="2lf-4d-LL2">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="BLr-lg-N5Z">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5Op-9k-iue">
                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
@@ -279,7 +279,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Hl-x0-hhe">
                                 <rect key="frame" x="293" y="8" width="66" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Post" image="post"/>
+                                <state key="normal" image="post"/>
                                 <connections>
                                     <action selector="onPost:" destination="bK7-Lb-jEe" eventType="touchUpInside" id="Y4L-jC-Vh9"/>
                                     <segue destination="xxs-p3-gId" kind="show" identifier="composeSegue" id="pKr-7Z-l9D"/>
@@ -295,7 +295,7 @@
             </objects>
             <point key="canvasLocation" x="1770" y="124"/>
         </scene>
-        <!--Detial View Controller-->
+        <!--Detail-->
         <scene sceneID="EUg-VW-tfk">
             <objects>
                 <viewController storyboardIdentifier="DetailView" id="o3W-aQ-wFB" customClass="DetialViewController" customModule="Twit" customModuleProvider="target" sceneMemberID="viewController">
@@ -470,7 +470,7 @@
                             <constraint firstItem="ZQD-FO-4Rx" firstAttribute="top" secondItem="ZAw-Qy-fHl" secondAttribute="bottom" constant="8" symbolic="YES" id="xhU-R5-X9i"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="AQ4-rU-e0d">
+                    <navigationItem key="navigationItem" title="Detail" id="AQ4-rU-e0d">
                         <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="o06-wZ-DES">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1j5-ze-Ah4">
                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
