@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
-            
             window?.rootViewController = vc
         }
         
@@ -35,6 +34,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             self.window?.rootViewController = vc
         }
+        
+        //Making tabbar item
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
+        
+        vc.tabBarItem.title = "Home"
+        vc.tabBarItem.image = UIImage(named: "home")?.withRenderingMode(.alwaysOriginal) //withRenderingmode show only the orignal picture
+        
+        let itab = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! UINavigationController
+        
+        itab.tabBarItem.title = "I"
+        itab.tabBarItem.image = UIImage(named: "account")?.withRenderingMode(.alwaysOriginal)
+        
+        
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [vc,itab]
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
+        
         return true
     }
 

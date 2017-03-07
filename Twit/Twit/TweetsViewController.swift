@@ -9,6 +9,7 @@
 import UIKit
 import AFNetworking
 
+
 class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
     var tweets: [Tweet]!
@@ -23,6 +24,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
         
+        let logo = UIImage(named: "AppIcon")
+        let imageView = UIImageView(image: logo)
+        self.navigationItem.titleView = imageView
         //Get Timeline tweet and store it in tweets[]
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
             self.tweets = tweets
@@ -78,22 +82,31 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
          TwitterClient.sharedInstance?.logout()
     }
    
-    /*
+    @IBAction func onPost(_ sender: Any) {
+        performSegue(withIdentifier: "composeSegue", sender: nil)
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        let cell = sender as! UITableViewCell
-        let indexPath = tableView.indexPath(for: cell)
-        let tweet = tweets[indexPath!.row]
+        let navController = segue.destination as! UINavigationController //With navigation controller have to do this 
         
-        let
- 
+        
+        
+        if segue.identifier == "detailSeguee"{
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPath(for: cell)
+            let tweet = tweets[indexPath!.row]
+
+        let vc = navController.topViewController as! DetialViewController
+        vc.tweet = tweet
+        }
+        
+        
     }
     
-  */
+  
 }

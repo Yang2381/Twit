@@ -8,8 +8,9 @@
 
 import UIKit
 
-class TweetCell: UITableViewCell {
 
+class TweetCell: UITableViewCell {
+    
     @IBOutlet weak var retweetCount: UILabel!
     @IBOutlet weak var likeCount: UILabel!
     @IBOutlet weak var timeStamp: UILabel!
@@ -21,14 +22,18 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var retweetImage: UIImageView!
     @IBOutlet weak var likeImage: UIImageView!
     
+    
     var tweet: Tweet!{
-        didSet{
+
+        willSet(tweet) {
             TextLabel.text = tweet.text!
+            
             let imageURL = URL(string: tweet.profilePictureUrl!)
             ProfielPicture.setImageWith(imageURL!)
+            
             userName.text = tweet.name
             screenName.text = "@\(tweet.screenName!)"
-            retweetCount.text = "\(tweet.retweetCount)"
+            retweetCount.text = self.convertcount(count: tweet.retweetCount)
             likeCount.text = "\(tweet.favoritesCount)"
                         
             
@@ -59,11 +64,13 @@ class TweetCell: UITableViewCell {
         ProfielPicture.layer.cornerRadius = 5
         ProfielPicture.clipsToBounds = true
         
-        //This is not working either
-        let TapRecognizerRetweet = UITapGestureRecognizer(target: self, action: #selector(self.TapRetweet(_sender:)))
-        let TapRecognizerLike = UITapGestureRecognizer(target: self, action: #selector(self.TapLike(_sender:)))
         likeImage.isUserInteractionEnabled = true
         retweetImage.isUserInteractionEnabled = true
+        
+      
+        let TapRecognizerRetweet = UITapGestureRecognizer(target: self, action: #selector(self.TapRetweet(_sender:)))
+        let TapRecognizerLike = UITapGestureRecognizer(target: self, action: #selector(self.TapLike(_sender:)))
+        
         TapRecognizerRetweet.cancelsTouchesInView = true
         TapRecognizerLike.cancelsTouchesInView = true
 
@@ -78,14 +85,14 @@ class TweetCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func TapRetweet(_sender: UITapGestureRecognizer){
-        
+   func TapRetweet(_sender: UITapGestureRecognizer){
+        print("Tapped retweet")
         TwitterClient.sharedInstance?.retweet(id: tweet.id!, success: { (response: Tweet) in
             self.retweetImage.image = UIImage(named: "greentweet")
-            self.retweetCount.text = self.convertCount(count: response.retweetCount)
+            self.retweetCount.text = "\(response.retweetCount)"
             self.tweet.retweetCount = response.retweetCount
             self.tweet.retweeted = true
-            sleep(UInt32(1))
+            
         }, faliure: { (error: Error) in
             
         })
@@ -97,13 +104,12 @@ class TweetCell: UITableViewCell {
         print("Tapped like")
         TwitterClient.sharedInstance?.favoriate(id: tweet.id!, success: { (response: Tweet) in
             self.likeImage.image = UIImage(named: "like")
-            self.likeCount.text = self.convertCount(count: response.favoritesCount)
+            self.likeCount.text = self.convertcount(count: response.favoritesCount)
             self.tweet.favoritesCount = response.favoritesCount
             self.tweet.favioriate = true
-            sleep(UInt32(1))
+            
         }, failure: { (error: Error) in
             print(error.localizedDescription)
-            print("1")
         })
     }
     /***************************************************************
@@ -133,6 +139,21 @@ class TweetCell: UITableViewCell {
         } else if(count/1000000 >= 1) {
             result = "\(count/1000000) m"
         } else {
+            result = "\(count)"
+        }
+        
+        return result!
+    }
+    
+    func convertcount(count : Int) -> String{
+        var result: String?
+        
+        if(count >= 1000 && count<=100){
+            result = "\(count/1000)k"
+        }else if(count > 100000 ){
+            
+           result = "\(count/10000)m"
+        }else{
             result = "\(count)"
         }
         
