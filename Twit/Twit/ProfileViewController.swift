@@ -52,6 +52,21 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        user = User.currentUser
+        
+        profielImage.layer.cornerRadius = 5
+        profielImage.clipsToBounds = true
+        
+        profielImage.setImageWith((user?.profielURL)!)
+        
+        screenName.text = (user?.screenname)! as String?
+        userName.text = user?.name! as? String
+        followerCount.text = "\(user!.follower!)"
+        followingLabel.text = "\(user!.following!)"
+        tweetCount.text = "\(user!.tweetsCount!)"
+
+    }
 
     /*
     // MARK: - Navigation

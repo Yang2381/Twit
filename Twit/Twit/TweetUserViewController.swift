@@ -24,7 +24,7 @@ class TweetUserViewController: UIViewController {
         super.viewDidLoad()
         
         screenName.text = "@\((user!.screenname!))"
-        userName.text = User.currentUser!.name! as String?
+        userName.text = user!.name! as String
         profielImage.setImageWith(user!.profielURL!)
         followerCount.text = "\(user!.follower!)"
         followingCount.text = "\(user!.following!)"

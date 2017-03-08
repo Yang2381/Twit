@@ -24,8 +24,20 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
         
-     
         
+        /*************************************************
+         Add logo in the navigation bar
+        *************************************************/
+        let logoImage = UIImage(named: "title_View")
+        
+        let logoView = UIImageView(frame: CGRect(x:0,y:0,width:44,height:44))
+        logoView.image = logoImage
+        logoView.contentMode = .scaleAspectFit
+        let titleView = UIImageView(frame: CGRect(x:0,y:0,width:44,height:44))
+        logoView.frame = titleView.bounds
+        titleView.addSubview(logoView)
+        
+        self.navigationItem.titleView = titleView
         //Get Timeline tweet and store it in tweets[]
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
             self.tweets = tweets
@@ -34,7 +46,11 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             
         }, failure: { (error: Error) in
             print(error.localizedDescription)
-            print(3)
+            let alertController = UIAlertController(title: "Error", message: "Somethings wrong and I don't know too", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
+           
         })
         
         
@@ -49,7 +65,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             
         }, failure: { (error: Error) in
             print(error.localizedDescription)
-            print(2)
+            let alertController = UIAlertController(title: "Error", message: "Somethings wrong and I don't know too", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertAction)
+            self.present(alertController, animated: true, completion: nil)
         })
         
 
